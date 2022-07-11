@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, CardBody, CardTitle, CardSubtitle, CardText} from 'reactstrap';
 interface NewsDetailsProps {
 
@@ -27,8 +28,15 @@ const NewsDetails: FC<NewsDetailsProps> = () => {
     <div>News Details</div>
      {headlinesData.map( (article: any) => {
         return (<><Card key={article.source.id}
+          style={{
+          
+            borderColor: '#333',
+            margin: '2rem'
+          }}
           >
-            <CardBody>
+            <CardBody
+            
+            >
               <CardTitle tag="h5">
                 {article?.title}
               </CardTitle>
@@ -38,7 +46,8 @@ const NewsDetails: FC<NewsDetailsProps> = () => {
               >
               { article.description}
               </CardSubtitle>
-              <CardText>
+              <CardText 
+              className="text-left">
                 {article.content}
               </CardText>
             </CardBody>
