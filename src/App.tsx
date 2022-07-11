@@ -1,25 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NewsDetails from './NewsDetails';
+
+import { Nav, NavItem, NavLink } from 'reactstrap';
+import LoginForm from './LoginForm';
+
+
 
 function App() {
+
+  const [toggle, setToggle] = useState(false);
+
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  const setShowDetails = (status: boolean) => {
+     setLoginStatus(true);
+  };
+
+  const handleLogin = () => {
+    console.log("login clicked");
+     setToggle(true);
+  };
   return (
+    <>
+     { (toggle) ? (<LoginForm setShowDetails={setShowDetails} />) :  null}
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+        <div>
+            <Nav>
+              <NavItem>
+                <NavLink
+                active
+                href="#"
+                onClick={handleLogin}
+                >
+                  Login
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#">
+                  Register
+                </NavLink>
+              </NavItem>
+            </Nav>
+
+        </div>
+        { loginStatus ? (<NewsDetails />): null  }
     </div>
+    </>
   );
 }
 
